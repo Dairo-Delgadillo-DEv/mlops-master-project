@@ -14,3 +14,6 @@ steps:
 
     - name: Verificación Final
       run: echo "¡Dependencias instaladas correctamente en la nube!"
+      
+	- name: Entrenar el Modelo
+      run: python train.py
