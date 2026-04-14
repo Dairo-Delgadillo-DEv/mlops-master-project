@@ -1,0 +1,47 @@
+name: MLOps-Automation-Check
+
+on: [push] # Se activa cada vez que haces un push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # El robot usará una máquina Linux
+
+    steps:
+    - name: Descargar mi código
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Saludo del Maestro
+      run: |
+        echo "¡Hola Dairo! El robot de MLOps está funcionando."
+        python --version
+    steps:
+    - name: Descargar mi código
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Verificación Final
+      run: echo "¡Dependencias instaladas correctamente en la nube!"
+
+    - name: Entrenar el Modelo
+      run: python train.py
+
+    - name: Subir el modelo como artefacto
+      uses: actions/upload-artifact@v4
+      with:
+        name: modelo-entrenado
+        path: model.joblib
+        
